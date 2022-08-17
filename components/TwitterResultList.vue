@@ -1,7 +1,7 @@
 <template lang="pug">
 .list
     .list__content
-        TweetCard(v-for="i in 3")
+        TweetCard(v-for="i in 3" :key="i")
     .list__btn
         button.btn.btn--primary 更多
 </template>
