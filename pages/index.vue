@@ -13,7 +13,7 @@ export default {
 <style lang="scss">
 .container{
     display: flex;
-    border: 1px solid #eee;
+    border: 1px solid $border-color;
     margin-top: 48px;
 }
 </style>

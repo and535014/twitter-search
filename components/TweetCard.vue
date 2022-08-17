@@ -26,7 +26,7 @@ export default {
     max-width: $card-max-width;
     min-height: $card-max-width*0.25;
     padding: 24px;
-    border: 1px solid rgba(white, .5);
+    border: 1px solid $border-color;
     .card__pic{
         flex: 1;
         img{
