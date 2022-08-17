@@ -1,6 +1,6 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 
-$black-10: rgba(black, .1);
+$border-color: #eee;
 
 @mixin size($w, $h:$w) {
     width: $w;
@@ -19,21 +19,28 @@ body{
 
 .container{
     max-width: 870px;
-    min-width: 577px;
-    padding: 24px;
 }
 
 .btn{
+    border: 1px solid #000;
+    appearance: none;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    line-height: 40px;
+    line-height: 36px;
     padding: 0 16px;
     border-radius: 100px;
     font-size: 16px;
+    font-weight: bold;
 }
 
 .btn--primary{
-    background-color: #fff;
-    color: #222;
+    background-color: #188CD8;
+    color: #fff;
+}
+
+.btn--lg{
+    line-height: 48px;
+    font-size: 18px;
+    padding: 0 18px;
 }

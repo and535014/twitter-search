@@ -13,10 +13,11 @@ export default {
 </script>
 
 <style lang="scss">
+$border-color: #eee;
 .list{
     max-width: 720px;
-    padding: 24px;
-    border: 1px solid #fff;
+    padding: 16px;
+    border-left: 1px solid #eee;
     .list__content{
         margin-bottom: 16px;
         .card{
