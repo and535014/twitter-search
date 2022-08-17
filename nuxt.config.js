@@ -15,8 +15,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/reseter.css/1.0.8/reseter.min.css' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -39,7 +38,7 @@ export default {
 
   //Scss global variable setting
   styleResources: {
-    scss: ['./assets/scss/main.scss']
+    scss: ['./assets/scss/_variables.scss', './assets/scss/_mixins.scss']
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules

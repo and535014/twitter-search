@@ -1,18 +1,4 @@
-// color ----------------------------------
-$bg-color: #222;
-$font-color: white;
-$border-color: rgba(white, .4);
-
-$primary: #188CD8;
-
-// font-size ----------------------------------
-$font-size-base: 16px;
-
-// mixin ----------------------------------
-@mixin size($w, $h:$w) {
-    width: $w;
-    height: $h;
-}
+@import url('https://cdnjs.cloudflare.com/ajax/libs/reseter.css/1.0.8/reseter.min.css');
 
 // Base ----------------------------------
 body{
