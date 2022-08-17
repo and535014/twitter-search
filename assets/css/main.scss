@@ -1,0 +1,25 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+$black-10: rgba(black, .1);
+
+@mixin size($w, $h:$w) {
+    width: $w;
+    height: $h;
+}
+
+html, body{
+    @include size(100%);
+    background-color: #222;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.container{
+    max-width: 1000px;
+    min-width: 577px;
+}

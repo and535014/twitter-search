@@ -1,5 +1,6 @@
 <template lang="pug">
-
+.container
+    TweetCard
 </template>
 
 <script>
