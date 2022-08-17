@@ -1,0 +1,52 @@
+// color ----------------------------------
+$bg-color: #222;
+$font-color: white;
+$border-color: rgba(white, .4);
+
+$primary: #188CD8;
+
+// font-size ----------------------------------
+$font-size-base: 16px;
+
+// mixin ----------------------------------
+@mixin size($w, $h:$w) {
+    width: $w;
+    height: $h;
+}
+
+// Base ----------------------------------
+body{
+    display: flex;
+    justify-content: center;
+    background-color: $bg-color;
+    color: $font-color;
+    font-size: $font-size-base;
+}
+
+.container{
+    max-width: 870px;
+}
+
+.btn{
+    border: 1px solid #000;
+    appearance: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 36px;
+    padding: 0 $font-size-base;
+    border-radius: 100px;
+    font-size: $font-size-base;
+    font-weight: bold;
+}
+
+.btn--primary{
+    background-color: $primary;
+    color: $font-color;
+}
+
+.btn--lg{
+    line-height: 48px;
+    font-size: 18px;
+    padding: 0 18px;
+}
