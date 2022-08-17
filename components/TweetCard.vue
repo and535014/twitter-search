@@ -25,7 +25,7 @@ export default {
     display: flex;
     max-width: $card-max-width;
     min-height: $card-max-width*0.25;
-    padding: 24px;
+    padding: $card-inner-p;
     border: 1px solid $border-color;
     .card__pic{
         flex: 1;
@@ -39,22 +39,23 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding-left: 12px;
+        padding-left: $card-inner-gutter;
     }
 
     .card__title{
-        font-size: 20px;
+        font-size: $font-size-title;
         font-weight: bold;
+        margin-bottom: $card-inner-mb;
     }
 
     .card__text{
         flex: 1;
         font-weight: 300;
-        margin-bottom: 8px;
+        margin-bottom: $card-inner-mb;
     }
 
     .card__date{
-        font-size: 14px;
+        font-size: $font-size-caption;
         opacity: .6;
     }
 }

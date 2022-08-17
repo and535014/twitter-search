@@ -6,4 +6,28 @@ $border-color: rgba(white, .4);
 $primary: #188CD8;
 
 // font-size ----------------------------------
-$font-size-base: 16px;
+$font-size-base: 14px;
+$font-size-title: 18px;
+$font-size-caption: 12px;
+
+
+//layout -----------------------------------------
+
+// button
+$btn-px: $font-size-base;
+$btn-border-radius: 100px;
+
+// card 
+$card-inner-mb: 8px;
+$card-inner-gutter: 12px;
+$card-outer-mb: 8px;
+$card-inner-p: 16px;
+
+// result-list
+$result-list-inner-mb: 16px;
+$result-list-inner-p: 16px;
+
+//search-box
+$search-box-inner-p: 16px;
+$search-box-inner-pt: 32px;
+$search-box-inner-mb: 8px;

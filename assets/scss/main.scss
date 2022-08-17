@@ -1,4 +1,4 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/reseter.css/1.0.8/reseter.min.css');
+@import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css);
 
 // Base ----------------------------------
 body{
@@ -7,6 +7,8 @@ body{
     background-color: $bg-color;
     color: $font-color;
     font-size: $font-size-base;
+    line-height: 1.4;
+    letter-spacing: .5px;
 }
 
 .container{
@@ -14,14 +16,14 @@ body{
 }
 
 .btn{
-    border: 1px solid #000;
+    border: none;
     appearance: none;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     line-height: 36px;
-    padding: 0 $font-size-base;
-    border-radius: 100px;
+    padding: 0 $btn-px;
+    border-radius: $btn-border-radius;
     font-size: $font-size-base;
     font-weight: bold;
 }
@@ -29,10 +31,4 @@ body{
 .btn--primary{
     background-color: $primary;
     color: $font-color;
-}
-
-.btn--lg{
-    line-height: 48px;
-    font-size: 18px;
-    padding: 0 18px;
 }

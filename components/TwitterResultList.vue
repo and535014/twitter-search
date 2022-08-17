@@ -15,13 +15,13 @@ export default {
 <style lang="scss">
 .list{
     max-width: 720px;
-    padding: 16px;
+    padding: $result-list-inner-p;
     border-left: 1px solid $border-color;
     .list__content{
-        margin-bottom: 16px;
+        margin-bottom: $result-list-inner-mb;
         .card{
             margin: 0 auto;
-            margin-bottom: 8px;
+            margin-bottom: $card-outer-mb;
         }
     }
     .list__btn{
