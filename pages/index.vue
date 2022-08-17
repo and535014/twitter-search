@@ -1,6 +1,6 @@
 <template lang="pug">
 .container
-    TweetCard
+    TwitterResultList
 </template>
 
 <script>

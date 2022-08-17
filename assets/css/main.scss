@@ -7,19 +7,33 @@ $black-10: rgba(black, .1);
     height: $h;
 }
 
-html, body{
-    @include size(100%);
+body{
     background-color: #222;
     font-size: 16px;
     line-height: 1.6;
     letter-spacing: 1px;
     display: flex;
     justify-content: center;
-    align-items: center;
     color: white;
 }
 
 .container{
-    max-width: 1000px;
+    max-width: 870px;
     min-width: 577px;
+    padding: 24px;
+}
+
+.btn{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 40px;
+    padding: 0 16px;
+    border-radius: 100px;
+    font-size: 16px;
+}
+
+.btn--primary{
+    background-color: #fff;
+    color: #222;
 }
