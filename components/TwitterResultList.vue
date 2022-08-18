@@ -1,14 +1,26 @@
 <template lang="pug">
 .list
     .list__content
-        TweetCard(v-for="i in 3" :key="i")
+        .tweets {{ tweets }}
+        TweetCard(v-for="i in 2" :key="i")
     .list__btn
         button.btn.btn--primary 更多
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { mapState } from "vuex";
 export default {
-    name: 'TwitterResultList'
+    name: 'TwitterResultList',
+    computed: {
+        ...mapState(['tweets'])
+    },
+    methods: {
+        ...mapActions(['fetchTweets'])
+    },
+    mounted(){
+        this.fetchTweets()
+    }
 }
 </script>
 
