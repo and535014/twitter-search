@@ -8,14 +8,42 @@
         .card__text
             p {{ text }}
         .card__date
-            p {{ created_at }}
-            p 23 minutes ago
+            p {{ localTime }}
+            p {{ timeAgo }}
 </template>
 
 <script>
 export default {
     name: 'TweetCard',
-    props: ['id', 'text', 'created_at', 'author_id']
+    props: ['id', 'text', 'created_at', 'author_id'],
+    computed: {
+        localTime(){
+            let input = this.created_at
+            let timeString = new Date(input)
+            let result = timeString.toLocaleString()
+            return result
+        },
+        timeAgo(){
+            let today = new Date().getTime()
+            let past = new Date(this.created_at).getTime()
+            let delta = today - past
+            let second = parseInt(delta/1000)
+            let minute = parseInt(delta/1000/60)
+            let hour = parseInt(delta/1000/60/60)
+            let date = parseInt(delta/1000/60/60/24)
+            if (date > 0){
+                return date + '  天前'
+            }else if (hour > 0){
+                return hour + ' 小時前'
+            }else if (minute > 0){
+                return minute + ' 分鐘前'
+            }else if (second > 0){
+                return second + ' 秒前'
+            }else{
+                return " "
+            }
+        }
+    }
 }
 </script>
 
