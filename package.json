@@ -18,7 +18,10 @@
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.2.1",
+    "dotenv": "^16.0.1",
+    "fs-extra": "^10.1.0",
     "sass": "^1.54.4",
-    "sass-loader": "^10.3.1"
+    "sass-loader": "^10.3.1",
+    "twitter": "^1.7.1"
   }
 }
