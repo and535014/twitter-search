@@ -2,7 +2,6 @@
 .list
     .list__content
         template(v-if="resultCount>0")
-            p 共有 {{ resultCount }} 筆搜尋結果：
             TweetCard(v-for="(tweet, tid) in tweets" :key="tweet.id" v-bind="tweet" :tid="tid")
         template(v-else)
             .not-found

@@ -23,17 +23,25 @@ export const mutations = {
     setKeywords(state, payload){
         state.keywords = payload
     },
-    setTweets(state, payload){
+    setDatas(state, payload){
         state.data = payload
         state.tweets = payload.data
         state.users = payload.includes.users
         state.meta = payload.meta
         state.resultCount = payload.meta.result_count
-    }    
+    },
+    clearDatas(state){
+        state.data = []
+        state.tweets = []
+        state.users = []
+        state.meta = []
+        state.resultCount = null
+    }     
 };
 
 export const actions = {
     async fetchTweets({ commit }){
+        
         const params = {
             'query': this.state.keywords,
             "sort_order": "recency",
@@ -55,7 +63,6 @@ export const actions = {
         .then((res)=> res)
 
 
-        commit('setTweets', json)
-        console.log(this.state.keywords);
+        commit('setDatas', json,'clearDatas')
     }
 };

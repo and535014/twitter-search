@@ -32,11 +32,12 @@ export default {
         goSearch(){
             if(this.keywords && !this.isComposing){
                 this.$store.commit('setKeywords', this.keywords)
-                this.fetchTweets()
-                if(this.resultCount<=0){
-                    this.$store.commit('setMsg', '沒有符合搜尋的結果。')
-                    console.log('0 result');
-                }
+                this.$store.commit('setMsg', '搜尋中...')
+                this.fetchTweets().then(() => {
+                    if(this.resultCount<=0){
+                        this.$store.commit('setMsg', '沒有符合搜尋的結果。')
+                    }
+                })
             }
         }
     }
