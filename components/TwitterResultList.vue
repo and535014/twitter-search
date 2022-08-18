@@ -1,13 +1,13 @@
 <template lang="pug">
 .list
     .list__content
-        template(v-if="resultCount>0")
+        template(v-if="tweets.length")
             TweetCard(v-for="(tweet, tid) in tweets" :key="tweet.id" v-bind="tweet" :tid="tid")
         template(v-else)
             .not-found
                 p {{ msg }}
-    .list__btn(v-if="resultCount>0")
-        button.btn.btn--primary 更多
+    .list__btn(v-if="tweets.length")
+        button.btn.btn--primary(@click="fetchNextTweets") 更多
 </template>
 
 <script>
@@ -16,10 +16,10 @@ import { mapState } from "vuex";
 export default {
     name: 'TwitterResultList',
     computed: {
-        ...mapState(['tweets','msg', 'resultCount', 'keywords']),
+        ...mapState(['tweets','msg', 'resultCount', 'keywords', 'data', 'users']),
     },
     methods: {
-        ...mapActions(['fetchTweets'])
+        ...mapActions(['fetchNextTweets'])
     }
 }
 </script>

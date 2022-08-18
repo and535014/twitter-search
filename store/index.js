@@ -9,7 +9,9 @@ export const state = () => ({
     tweets: [],
     users: [],
     meta: [],
+    nextToken: '',
     resultCount: 0,
+    tokenData: {},
 });
 
 export const getters = {
@@ -24,11 +26,20 @@ export const mutations = {
         state.keywords = payload
     },
     setDatas(state, payload){
-        state.data = payload
-        state.tweets = payload.data
-        state.users = payload.includes.users
-        state.meta = payload.meta
-        state.resultCount = payload.meta.result_count
+        state.data.push(payload)
+        state.tweets = payload.data || []
+        state.users = payload.includes.users || []
+        state.meta = payload.meta || []
+        state.nextToken = payload.meta.next_token || ''
+        state.resultCount = +payload.meta.result_count || 0
+    },
+    updateDatas(state, payload){
+        state.data.push(payload)
+        state.tokenData = payload
+        state.tweets.push(...payload.data)
+        state.users.push(...payload.includes.users)
+        state.nextToken = payload.meta.next_token || ''
+        state.resultCount +=10
     },
     clearDatas(state){
         state.data = []
@@ -40,10 +51,35 @@ export const mutations = {
 };
 
 export const actions = {
-    async fetchTweets({ commit }){
+    async fetchTweets(context){
         
         const params = {
-            'query': this.state.keywords,
+            'query': context.state.keywords,
+            "sort_order": "recency",
+            'expansions': 'author_id,geo.place_id',
+            'tweet.fields': 'author_id,created_at,text,geo',
+            'media.fields': 'type,url',
+            'user.fields': 'location,name,username,profile_image_url,url',
+            'place.fields': 'country,country_code,full_name,geo,name',
+            'max_results': 10,
+        }
+
+        const json = await this.$axios.$get(baseUrl, {
+            params: params,
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        .then((res)=> res)
+
+        context.commit('setDatas', json)
+    },
+    async fetchNextTweets(context){
+        
+        const params = {
+            'query': context.state.keywords,
+            "next_token": context.state.nextToken,
             "sort_order": "recency",
             'expansions': 'author_id,geo.place_id',
             'tweet.fields': 'author_id,created_at,text,geo',
@@ -63,6 +99,6 @@ export const actions = {
         .then((res)=> res)
 
 
-        commit('setDatas', json,'clearDatas')
+        context.commit('updateDatas', json)
     }
 };

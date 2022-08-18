@@ -11,6 +11,7 @@
             )
     .search-box__btn
         button.btn.btn--primary(@click="goSearch") 搜尋
+        //- p {{nextToken}}
 </template>
 
 <script>
@@ -25,16 +26,17 @@ export default {
         }
     },
     computed: {
-        ...mapState(['meta', 'resultCount'])
+        ...mapState(['meta', 'resultCount' ,'nextToken'])
     },
     methods: {
         ...mapActions(['fetchTweets']),
         goSearch(){
             if(this.keywords && !this.isComposing){
+                this.$store.commit('clearDatas')
                 this.$store.commit('setKeywords', this.keywords)
                 this.$store.commit('setMsg', '搜尋中...')
                 this.fetchTweets().then(() => {
-                    if(this.resultCount<=0){
+                    if(this.resultCount===0){
                         this.$store.commit('setMsg', '沒有符合搜尋的結果。')
                     }
                 })

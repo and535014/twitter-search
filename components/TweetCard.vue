@@ -3,7 +3,6 @@ a.card(:href="tweetUrl" target="_blank")
     .card__pic
         img(:src="imgUrl")
     .card__content
-        //- p {{ id }}
         .card__title
             span {{ name }}
         .card__text
@@ -47,7 +46,8 @@ export default {
             }
         },
         user(){
-            let user = {...this.users[this.tid]}
+            let data = this.users
+            let user = data.filter((d) => d.id==this.author_id)[0]
             return user
         },
         username(){
