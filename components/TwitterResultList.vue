@@ -1,8 +1,11 @@
 <template lang="pug">
 .list
     .list__content
-        .tweets {{ tweets }}
-        TweetCard(v-for="i in 2" :key="i")
+        .tweets 
+            p count: {{ tweets.length }}
+            p keys: {{ keysInTweets }}
+            p {{ tweets[0] }}
+        TweetCard(v-for="tweet in tweets" :key="tweet.id" v-bind="tweet")
     .list__btn
         button.btn.btn--primary 更多
 </template>
@@ -13,7 +16,12 @@ import { mapState } from "vuex";
 export default {
     name: 'TwitterResultList',
     computed: {
-        ...mapState(['tweets'])
+        ...mapState(['tweets']),
+        keysInTweets(){
+            let obj = {...this.tweets[0]}
+            let result = Object.keys(obj)
+            return result
+        }
     },
     methods: {
         ...mapActions(['fetchTweets'])

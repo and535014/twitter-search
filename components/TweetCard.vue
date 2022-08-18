@@ -4,17 +4,18 @@
         img(src='@/assets/pic.jpg')
     .card__content
         .card__title
-            span and535014
+            span {{ author_id }}
         .card__text
-            p 今天又濕想睡的一天 zzz 今天又濕想睡的一天 zzz 今天又濕想睡的一天 zzz 
+            p {{ text }}
         .card__date
-            p 2022/08/17 14:47
+            p {{ created_at }}
             p 23 minutes ago
 </template>
 
 <script>
 export default {
-    name: 'TweetCard'
+    name: 'TweetCard',
+    props: ['id', 'text', 'created_at', 'author_id']
 }
 </script>
 

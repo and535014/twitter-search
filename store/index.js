@@ -3,7 +3,8 @@ const baseUrl = 'http://localhost:3000/api'
 const endpointUrl = "https://api.twitter.com/2/tweets/search/recent";
 
 export const state = () => ({
-    tweets: []
+    tweets: [],
+    meta: []
 });
 
 export const getters = {
@@ -12,7 +13,8 @@ export const getters = {
 
 export const mutations = {
     setTweets(state, payload){
-        state.tweets = payload
+        state.tweets = payload.data
+        state.meta = payload.meta
     }    
 };
 
@@ -22,17 +24,22 @@ export const actions = {
         // .then((res)=> res.json())
 
         const params = {
-            'query': 'from:twitterdev -is:retweet',
-            'tweet.fields': 'author_id'
+            'query': 'from:twitterdev',
+            'tweet.fields': 'author_id,created_at,text',
+            'place.fields': 'country',
+            'media.fields': 'preview_image_url,url',
+            'user.fields': 'location,name,username',
+            'max_results': 10,
         }
 
         const json = await this.$axios.$get(baseUrl, {
             params: params,
             headers: {
+                'Content-Type': 'application/json',
                 "Authorization": `Bearer ${token}`
             }
         })
-        .then((res)=> res.data)
+        .then((res)=> res)
 
 
         // console.log(token);
