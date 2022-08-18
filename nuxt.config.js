@@ -44,7 +44,24 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios'
   ],
+
+  axios: {
+    proxy: true,
+    prefix: '/api',
+    credentials: true,
+  },
+
+  proxy: {
+    '/api': {
+      target: 'https://api.twitter.com/2/tweets/search/recent', 
+      changeOrigin: true, 
+      pathRewrite: {
+        '^/api': '',
+      },
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

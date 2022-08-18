@@ -1,4 +1,5 @@
 const token = process.env.BEARER_TOKEN;
+const baseUrl = 'http://localhost:3000/api'
 const endpointUrl = "https://api.twitter.com/2/tweets/search/recent";
 
 export const state = () => ({
@@ -17,7 +18,7 @@ export const mutations = {
 
 export const actions = {
     async fetchTweets({ commit }){
-        // const json = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+        // const json = await fetch('http://localhost:3000/api')
         // .then((res)=> res.json())
 
         const params = {
@@ -25,14 +26,13 @@ export const actions = {
             'tweet.fields': 'author_id'
         }
 
-        const json = await this.$axios.get(endpointUrl, {
+        const json = await this.$axios.$get(baseUrl, {
             params: params,
             headers: {
-                "User-Agent": "my Twitter App",
                 "Authorization": `Bearer ${token}`
             }
         })
-        .then((res)=> res)
+        .then((res)=> res.data)
 
 
         // console.log(token);
