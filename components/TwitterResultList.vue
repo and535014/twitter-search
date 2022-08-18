@@ -2,10 +2,12 @@
 .list
     .list__content
         .tweets 
-            p count: {{ tweets.length }}
+            //- p count: {{ tweets.length }}
             p keys: {{ keysInTweets }}
-            p {{ tweets[0] }}
-        TweetCard(v-for="tweet in tweets" :key="tweet.id" v-bind="tweet")
+            //- p {{ tweets[0] }}
+            //- p {{ data }}
+            p {{ users }}
+        TweetCard(v-for="(tweet, tid) in tweets" :key="tweet.id" v-bind="tweet" :tid="tid")
     .list__btn
         button.btn.btn--primary 更多
 </template>
@@ -16,7 +18,7 @@ import { mapState } from "vuex";
 export default {
     name: 'TwitterResultList',
     computed: {
-        ...mapState(['tweets']),
+        ...mapState(['tweets', 'users', 'data']),
         keysInTweets(){
             let obj = {...this.tweets[0]}
             let result = Object.keys(obj)

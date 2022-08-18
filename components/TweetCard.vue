@@ -4,7 +4,7 @@
         img(src='@/assets/pic.jpg')
     .card__content
         .card__title
-            span {{ author_id }}
+            span {{ name }}
         .card__text
             p {{ text }}
         .card__date
@@ -13,10 +13,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
     name: 'TweetCard',
-    props: ['id', 'text', 'created_at', 'author_id'],
+    props: ['tid', 'id', 'text', 'created_at', 'author_id'],
     computed: {
+        ...mapState(['users']),
         localTime(){
             let input = this.created_at
             let timeString = new Date(input)
@@ -42,6 +44,12 @@ export default {
             }else{
                 return " "
             }
+        },
+        name(){
+            let user = {...this.users[this.tid]}
+            let name = user["name"]
+
+            return name
         }
     }
 }

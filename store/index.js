@@ -4,7 +4,9 @@ const endpointUrl = "https://api.twitter.com/2/tweets/search/recent";
 
 export const state = () => ({
     tweets: [],
-    meta: []
+    users: [],
+    meta: [],
+    data: [],
 });
 
 export const getters = {
@@ -14,7 +16,9 @@ export const getters = {
 export const mutations = {
     setTweets(state, payload){
         state.tweets = payload.data
+        state.users = payload.includes.users
         state.meta = payload.meta
+        state.data = payload
     }    
 };
 
@@ -24,8 +28,9 @@ export const actions = {
         // .then((res)=> res.json())
 
         const params = {
-            'query': 'from:twitterdev',
-            'tweet.fields': 'author_id,created_at,text',
+            'query': 'drenbofv',
+            'expansions': 'author_id,geo.place_id',
+            'tweet.fields': 'author_id,created_at,text,public_metrics',
             'place.fields': 'country',
             'media.fields': 'preview_image_url,url',
             'user.fields': 'location,name,username',
