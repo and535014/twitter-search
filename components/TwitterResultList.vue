@@ -7,7 +7,7 @@
             .list__content__msg
                 p {{ msg }}
     //- .list__btn(v-if="tweets.length")
-        button.btn.btn--primary(@click="fetchNextTweets") 更多
+    //-     button.btn.btn--primary(@click="fetchNextTweets") 更多
 </template>
 
 <script>
@@ -49,17 +49,18 @@ export default {
 
 <style lang="scss">
 .list{
-    min-width: 500px;
     max-width: 720px;
-    padding: $result-list-inner-p;
-    border-left: 1px solid $border-color;
+    flex: 1;
+    padding: $result-list-inner-py $result-list-inner-px;
     box-sizing: border-box;
-    overflow: auto;
     .list__content{
         margin-bottom: $result-list-inner-mb;
         .card{
             margin: 0 auto;
             margin-bottom: $card-outer-mb;
+        }
+        .list__content__msg{
+            text-align: center;
         }
     }
     .list__btn{

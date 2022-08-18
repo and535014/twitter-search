@@ -68,13 +68,14 @@ export default {
 
 <style lang="scss">
 .card{
-    $card-max-width: 450px;
+    // $card-max-width: 100%;
     display: flex;
-    max-width: $card-max-width;
-    min-height: $card-max-width*0.25;
+    // max-width: $card-max-width;
+    // min-height: $card-max-width*0.25;
+    min-height: 25%;
     padding: $card-inner-p;
     border: 1px solid $border-color;
-    transition: .5s;
+    transition: background-color .5s;
 
     &:hover{
         background-color: $bg-color-tint;
@@ -110,6 +111,13 @@ export default {
     .card__date{
         font-size: $font-size-caption;
         opacity: .6;
+    }
+
+    @media screen and (max-width: 576px){
+        padding: 12px;
+        .card__pic{
+            flex-basis: 60px;
+        }
     }
 }
 </style>

@@ -2,8 +2,6 @@
 
 // Base ----------------------------------
 body{
-    display: flex;
-    justify-content: center;
     background-color: $bg-color;
     color: $font-color;
     font-size: $font-size-base;
@@ -18,11 +16,6 @@ a{
     &:visited{
         color: $font-color;
     }
-}
-
-.container{
-    max-width: 870px;
-    min-height: 500px;
 }
 
 .btn{

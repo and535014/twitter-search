@@ -47,9 +47,10 @@ export default {
 
 <style lang="scss">
 .search-box{
-    min-width: 150px;
-    padding: $search-box-inner-p;
-    padding-top: $search-box-inner-pt;
+    flex-basis: 150px;
+    padding: $result-list-inner-py $result-list-inner-px;
+    border-right: 1px solid $border-color;
+    box-sizing: border-box;
     .search-box__input{
         margin-bottom: $search-box-inner-mb;
         input{
@@ -57,6 +58,7 @@ export default {
             appearance: none;
             border-radius: 100px;
             line-height: 36px;
+            width: 100%;
             text-indent: $btn-px;
             font-size: $font-size-base;
             background-color: $bg-color-tint;
@@ -74,6 +76,11 @@ export default {
         .btn{
             width: 100%;
         }
+    }
+
+    @media screen and (max-width: 576px){
+        border: none;
+        border-bottom: 1px solid $border-color;
     }
 
 }
