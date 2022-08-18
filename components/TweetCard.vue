@@ -68,10 +68,7 @@ export default {
 
 <style lang="scss">
 .card{
-    // $card-max-width: 100%;
     display: flex;
-    // max-width: $card-max-width;
-    // min-height: $card-max-width*0.25;
     min-height: 25%;
     padding: $card-inner-p;
     border: 1px solid $border-color;

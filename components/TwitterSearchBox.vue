@@ -25,7 +25,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['meta', 'resultCount' ,'nextToken'])
+        ...mapState(['resultCount'])
     },
     methods: {
         ...mapActions(['fetchTweets']),

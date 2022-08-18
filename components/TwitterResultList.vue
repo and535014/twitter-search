@@ -21,7 +21,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['tweets','msg', 'resultCount', 'keywords', 'data', 'users']),
+        ...mapState(['tweets','msg']),
     },
     methods: {
         ...mapActions(['fetchNextTweets']),

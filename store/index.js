@@ -1,6 +1,6 @@
 const token = process.env.BEARER_TOKEN;
 const baseUrl = 'http://localhost:3000/api'
-const endpointUrl = "https://api.twitter.com/2/tweets/search/recent";
+// const endpointUrl = "https://api.twitter.com/2/tweets/search/recent";
 
 export const state = () => ({
     msg: '請輸入關鍵字開始進行搜尋。',
@@ -53,8 +53,11 @@ export const mutations = {
 export const actions = {
     async fetchTweets(context){
         
+        let query = context.state.keywords
+        let result = encodeURIComponent(query)
+        let url = baseUrl+'?query='+result
+        
         const params = {
-            'query': context.state.keywords,
             "sort_order": "recency",
             'expansions': 'author_id,geo.place_id',
             'tweet.fields': 'author_id,created_at,text,geo',
@@ -64,7 +67,7 @@ export const actions = {
             'max_results': 10,
         }
 
-        const json = await this.$axios.$get(baseUrl, {
+        const json = await this.$axios.$get(url, {
             params: params,
             headers: {
                 'Content-Type': 'application/json',
@@ -72,13 +75,17 @@ export const actions = {
             }
         })
         .then((res)=> res)
+        .catch((error) => console.log("error", error))
 
         context.commit('setDatas', json)
     },
     async fetchNextTweets(context){
+
+        let query = context.state.keywords
+        let result = encodeURIComponent(query)
+        let url = baseUrl+'?query='+result
         
         const params = {
-            'query': context.state.keywords,
             "next_token": context.state.nextToken,
             "sort_order": "recency",
             'expansions': 'author_id,geo.place_id',
@@ -89,7 +96,7 @@ export const actions = {
             'max_results': 10,
         }
 
-        const json = await this.$axios.$get(baseUrl, {
+        const json = await this.$axios.$get(url, {
             params: params,
             headers: {
                 'Content-Type': 'application/json',
@@ -97,7 +104,7 @@ export const actions = {
             }
         })
         .then((res)=> res)
-
+        .catch((error) => console.log("error", error))
 
         context.commit('updateDatas', json)
     }
