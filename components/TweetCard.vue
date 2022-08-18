@@ -69,13 +69,16 @@ export default {
 <style lang="scss">
 .card{
     $card-max-width: 450px;
-    display: block;
-
     display: flex;
     max-width: $card-max-width;
     min-height: $card-max-width*0.25;
     padding: $card-inner-p;
     border: 1px solid $border-color;
+    transition: .5s;
+
+    &:hover{
+        background-color: $bg-color-tint;
+    }
     .card__pic{
         flex-basis: 80px;
         img{

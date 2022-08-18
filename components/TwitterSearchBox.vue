@@ -11,7 +11,6 @@
             )
     .search-box__btn
         button.btn.btn--primary(@click="goSearch") 搜尋
-        //- p {{nextToken}}
 </template>
 
 <script>
@@ -60,7 +59,7 @@ export default {
             line-height: 36px;
             text-indent: $btn-px;
             font-size: $font-size-base;
-            background-color: lighten($bg-color, 10);
+            background-color: $bg-color-tint;
             caret-color: $font-color;
             color: $font-color;
 

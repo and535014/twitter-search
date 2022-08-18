@@ -4,7 +4,7 @@
         template(v-if="tweets.length")
             TweetCard(v-for="(tweet, tid) in tweets" :key="tweet.id" v-bind="tweet" :tid="tid")
         template(v-else)
-            .not-found
+            .list__content__msg
                 p {{ msg }}
     //- .list__btn(v-if="tweets.length")
         button.btn.btn--primary(@click="fetchNextTweets") 更多

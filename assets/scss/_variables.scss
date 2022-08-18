@@ -1,5 +1,6 @@
 // color ----------------------------------
 $bg-color: #222;
+$bg-color-tint: lighten($bg-color, 10);
 $font-color: white;
 $border-color: rgba(white, .4);
 

@@ -28,7 +28,7 @@ export const mutations = {
     setDatas(state, payload){
         state.data.push(payload)
         state.tweets = payload.data || []
-        state.users = payload.includes.users || []
+        state.users = {...payload.includes}.users || []
         state.meta = payload.meta || []
         state.nextToken = payload.meta.next_token || ''
         state.resultCount = +payload.meta.result_count || 0
