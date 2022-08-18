@@ -1,7 +1,7 @@
 <template lang="pug">
 .card
     .card__pic
-        img(src='@/assets/pic.jpg')
+        img(:src="imgUrl")
     .card__content
         .card__title
             span {{ name }}
@@ -45,11 +45,15 @@ export default {
                 return " "
             }
         },
-        name(){
+        user(){
             let user = {...this.users[this.tid]}
-            let name = user["name"]
-
-            return name
+            return user
+        },
+        name(){
+            return this.user["name"]
+        },
+        imgUrl(){
+            return this.user["profile_image_url"]
         }
     }
 }
@@ -65,14 +69,15 @@ export default {
     padding: $card-inner-p;
     border: 1px solid $border-color;
     .card__pic{
-        flex: 1;
+        flex-basis: 80px;
         img{
+            border-radius: 50%;
             width: 100%;
         }
     }
 
     .card__content{
-        flex: 2;
+        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;

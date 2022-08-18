@@ -32,8 +32,8 @@ export const actions = {
             'expansions': 'author_id,geo.place_id',
             'tweet.fields': 'author_id,created_at,text,public_metrics',
             'place.fields': 'country',
-            'media.fields': 'preview_image_url,url',
-            'user.fields': 'location,name,username',
+            'media.fields': 'type,url',
+            'user.fields': 'location,name,username,profile_image_url,url',
             'max_results': 10,
         }
 

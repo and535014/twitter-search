@@ -6,7 +6,7 @@
             p keys: {{ keysInTweets }}
             //- p {{ tweets[0] }}
             //- p {{ data }}
-            p {{ users }}
+            p {{ users[0] }}
         TweetCard(v-for="(tweet, tid) in tweets" :key="tweet.id" v-bind="tweet" :tid="tid")
     .list__btn
         button.btn.btn--primary 更多
