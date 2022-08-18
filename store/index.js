@@ -3,10 +3,13 @@ const baseUrl = 'http://localhost:3000/api'
 const endpointUrl = "https://api.twitter.com/2/tweets/search/recent";
 
 export const state = () => ({
+    msg: '請輸入關鍵字開始進行搜尋。',
+    keywords: '',
+    data: [],
     tweets: [],
     users: [],
     meta: [],
-    data: [],
+    resultCount: 0,
 });
 
 export const getters = {
@@ -14,27 +17,31 @@ export const getters = {
 };
 
 export const mutations = {
+    setMsg(state, payload){
+        state.msg = payload
+    },
+    setKeywords(state, payload){
+        state.keywords = payload
+    },
     setTweets(state, payload){
+        state.data = payload
         state.tweets = payload.data
         state.users = payload.includes.users
         state.meta = payload.meta
-        state.data = payload
+        state.resultCount = payload.meta.result_count
     }    
 };
 
 export const actions = {
     async fetchTweets({ commit }){
-        // const json = await fetch('http://localhost:3000/api')
-        // .then((res)=> res.json())
-
         const params = {
-            'query': 'drenbofv',
+            'query': this.state.keywords,
             "sort_order": "recency",
-            'expansions': 'author_id,attachments.media_keys,geo.place_id',
-            'tweet.fields': 'author_id,created_at,text,public_metrics,entities,withheld,geo',
+            'expansions': 'author_id,geo.place_id',
+            'tweet.fields': 'author_id,created_at,text,geo',
             'media.fields': 'type,url',
-            'user.fields': 'location,name,username,profile_image_url,url,entities',
-            'place.fields': 'country,country_code,contained_within,full_name,geo,id,name,place_type',
+            'user.fields': 'location,name,username,profile_image_url,url',
+            'place.fields': 'country,country_code,full_name,geo,name',
             'max_results': 10,
         }
 
@@ -48,7 +55,7 @@ export const actions = {
         .then((res)=> res)
 
 
-        // console.log(token);
         commit('setTweets', json)
+        console.log(this.state.keywords);
     }
 };

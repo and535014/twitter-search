@@ -1,14 +1,13 @@
 <template lang="pug">
 .list
     .list__content
-        .tweets 
-            //- p count: {{ tweets.length }}
-            p keys: {{ keysInTweets }}
-            //- p {{ tweets[0] }}
-            //- p {{ data }}
-            //- p {{ users[0] }}
-        TweetCard(v-for="(tweet, tid) in tweets" :key="tweet.id" v-bind="tweet" :tid="tid")
-    .list__btn
+        template(v-if="resultCount>0")
+            p 共有 {{ resultCount }} 筆搜尋結果：
+            TweetCard(v-for="(tweet, tid) in tweets" :key="tweet.id" v-bind="tweet" :tid="tid")
+        template(v-else)
+            .not-found
+                p {{ msg }}
+    .list__btn(v-if="resultCount>0")
         button.btn.btn--primary 更多
 </template>
 
@@ -18,27 +17,21 @@ import { mapState } from "vuex";
 export default {
     name: 'TwitterResultList',
     computed: {
-        ...mapState(['tweets', 'users', 'data']),
-        keysInTweets(){
-            let obj = {...this.tweets[0]}
-            let result = Object.keys(obj)
-            return result
-        }
+        ...mapState(['tweets','msg', 'resultCount', 'keywords']),
     },
     methods: {
         ...mapActions(['fetchTweets'])
-    },
-    mounted(){
-        this.fetchTweets()
     }
 }
 </script>
 
 <style lang="scss">
 .list{
+    min-width: 500px;
     max-width: 720px;
     padding: $result-list-inner-p;
     border-left: 1px solid $border-color;
+    box-sizing: border-box;
     .list__content{
         margin-bottom: $result-list-inner-mb;
         .card{
