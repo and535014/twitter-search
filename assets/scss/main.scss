@@ -11,6 +11,15 @@ body{
     letter-spacing: .5px;
 }
 
+a{
+    color: $font-color;
+    text-decoration: none;
+
+    &:visited{
+        color: $font-color;
+    }
+}
+
 .container{
     max-width: 870px;
 }

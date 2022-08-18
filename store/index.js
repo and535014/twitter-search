@@ -29,11 +29,12 @@ export const actions = {
 
         const params = {
             'query': 'drenbofv',
-            'expansions': 'author_id,geo.place_id',
-            'tweet.fields': 'author_id,created_at,text,public_metrics',
-            'place.fields': 'country',
+            "sort_order": "recency",
+            'expansions': 'author_id,attachments.media_keys,geo.place_id',
+            'tweet.fields': 'author_id,created_at,text,public_metrics,entities,withheld,geo',
             'media.fields': 'type,url',
-            'user.fields': 'location,name,username,profile_image_url,url',
+            'user.fields': 'location,name,username,profile_image_url,url,entities',
+            'place.fields': 'country,country_code,contained_within,full_name,geo,id,name,place_type',
             'max_results': 10,
         }
 

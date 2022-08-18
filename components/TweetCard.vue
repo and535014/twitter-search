@@ -1,8 +1,9 @@
 <template lang="pug">
-.card
+a.card(:href="tweetUrl" target="_blank")
     .card__pic
         img(:src="imgUrl")
     .card__content
+        //- p {{ id }}
         .card__title
             span {{ name }}
         .card__text
@@ -49,11 +50,17 @@ export default {
             let user = {...this.users[this.tid]}
             return user
         },
+        username(){
+            return this.user["username"]
+        },
         name(){
             return this.user["name"]
         },
         imgUrl(){
             return this.user["profile_image_url"]
+        },
+        tweetUrl(){
+            return `https://twitter.com/${this.username}/status/${this.id}`
         }
     }
 }
@@ -62,6 +69,7 @@ export default {
 <style lang="scss">
 .card{
     $card-max-width: 450px;
+    display: block;
 
     display: flex;
     max-width: $card-max-width;
