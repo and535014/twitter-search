@@ -1,7 +1,7 @@
 <template lang="pug">
 .container
     .header
-        h1.title Twitter Search App
+        h1 Twitter Search App
     .main
         TwitterSearchBox
         TwitterResultList
@@ -17,7 +17,7 @@ export default {
 .container{
     width: 100%;
     max-width: 872px;
-    margin: 24px auto;
+    margin: 0 auto;
 
     .main{
         min-height: 500px;
@@ -26,15 +26,15 @@ export default {
     }
 
     .header{
-        font-size: 30px;
+        font-size: $font-size-header;
         text-align: center;
-        padding: $p-lg;
+        padding: $header-p;
         font-weight: bold;
     }
 
     @media screen and (max-width: 576px){
         .header{
-            padding: $p-sm;
+            padding: $space-3;
         }
         .main{
             display: block;

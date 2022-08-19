@@ -12,9 +12,8 @@
     .search-box__btn
         button.btn.btn--primary(@click="goSearch") 搜尋
 </template>
-
+x
 <script>
-import { mapState } from "vuex";
 import { mapActions } from "vuex";
 export default {
     name: 'TwitterSearchBox',
@@ -23,9 +22,6 @@ export default {
             keywords: '',
             isComposing: false,
         }
-    },
-    computed: {
-        ...mapState(['resultCount'])
     },
     methods: {
         ...mapActions(['fetchTweets']),
@@ -47,29 +43,12 @@ export default {
 
 <style lang="scss">
 .search-box{
-    flex-basis: 150px;
-    padding: $result-list-inner-py $result-list-inner-px;
+    flex-basis: $search-box-min-width;
+    padding: $search-box-inner-p;
     border-right: 1px solid $border-color;
     box-sizing: border-box;
     .search-box__input{
         margin-bottom: $search-box-inner-mb;
-        input{
-            border: none;
-            appearance: none;
-            border-radius: 100px;
-            line-height: 36px;
-            width: 100%;
-            text-indent: $btn-px;
-            font-size: $font-size-base;
-            background-color: $bg-color-tint;
-            caret-color: $font-color;
-            color: $font-color;
-
-            &:focus{
-                outline: 2px solid $primary;
-                background-color: $bg-color;
-            }
-        }
     }
         
     .search-box__btn{

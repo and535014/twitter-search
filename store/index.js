@@ -12,10 +12,29 @@ export const state = () => ({
     nextToken: '',
     resultCount: 0,
     tokenData: {},
+    params: {
+        "sort_order": "recency",
+        'expansions': 'author_id,geo.place_id',
+        'tweet.fields': 'author_id,created_at,text,geo',
+        'media.fields': 'type,url',
+        'user.fields': 'location,name,username,profile_image_url,url',
+        'place.fields': 'country,country_code,full_name,geo,name',
+        'max_results': 10,
+    },
+    headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${token}`
+    },
+    filters: ' -is:retweet'
 });
 
 export const getters = {
-    
+    finalUrl(state){
+        let query = state.keywords + state.filters
+        let queryString = encodeURIComponent(query)
+        let url = baseUrl+'?query='+queryString
+        return url
+    }
 };
 
 export const mutations = {
@@ -30,8 +49,8 @@ export const mutations = {
         state.tweets = payload.data || []
         state.users = {...payload.includes}.users || []
         state.meta = payload.meta || []
-        state.nextToken = payload.meta.next_token || ''
-        state.resultCount = +payload.meta.result_count || 0
+        state.nextToken = {...payload.meta}.next_token || ''
+        state.resultCount = parseInt({...payload.meta}.result_count) || 0
     },
     updateDatas(state, payload){
         state.data.push(payload)
@@ -39,7 +58,7 @@ export const mutations = {
         state.tweets.push(...payload.data)
         state.users.push(...payload.includes.users)
         state.nextToken = payload.meta.next_token || ''
-        state.resultCount +=10
+        state.resultCount = state.tweets.length
     },
     clearDatas(state){
         state.data = []
@@ -52,59 +71,30 @@ export const mutations = {
 
 export const actions = {
     async fetchTweets(context){
-        
-        let query = context.state.keywords
-        let result = encodeURIComponent(query)
-        let url = baseUrl+'?query='+result
-        
-        const params = {
-            "sort_order": "recency",
-            'expansions': 'author_id,geo.place_id',
-            'tweet.fields': 'author_id,created_at,text,geo',
-            'media.fields': 'type,url',
-            'user.fields': 'location,name,username,profile_image_url,url',
-            'place.fields': 'country,country_code,full_name,geo,name',
-            'max_results': 10,
-        }
+        let url = context.getters.finalUrl
 
         const json = await this.$axios.$get(url, {
-            params: params,
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${token}`
-            }
+            params: context.state.params,
+            headers: context.state.headers
         })
         .then((res)=> res)
-        .catch((error) => console.log("error", error))
+        .catch((error) => console.error(error))
 
         context.commit('setDatas', json)
     },
     async fetchNextTweets(context){
-
-        let query = context.state.keywords
-        let result = encodeURIComponent(query)
-        let url = baseUrl+'?query='+result
-        
+        let url = context.getters.finalUrl
         const params = {
             "next_token": context.state.nextToken,
-            "sort_order": "recency",
-            'expansions': 'author_id,geo.place_id',
-            'tweet.fields': 'author_id,created_at,text,geo',
-            'media.fields': 'type,url',
-            'user.fields': 'location,name,username,profile_image_url,url',
-            'place.fields': 'country,country_code,full_name,geo,name',
-            'max_results': 10,
+            ...context.state.params
         }
 
         const json = await this.$axios.$get(url, {
             params: params,
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${token}`
-            }
+            headers: context.state.headers
         })
         .then((res)=> res)
-        .catch((error) => console.log("error", error))
+        .catch((error) => console.error(error))
 
         context.commit('updateDatas', json)
     }

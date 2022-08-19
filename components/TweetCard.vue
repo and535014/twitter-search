@@ -16,7 +16,7 @@ a.card(:href="tweetUrl" target="_blank")
 import { mapState } from 'vuex'
 export default {
     name: 'TweetCard',
-    props: ['tid', 'id', 'text', 'created_at', 'author_id'],
+    props: ['id', 'text', 'created_at', 'author_id'],
     computed: {
         ...mapState(['users']),
         localTime(){
@@ -78,7 +78,7 @@ export default {
         background-color: $bg-color-tint;
     }
     .card__pic{
-        flex-basis: 80px;
+        flex-basis: $card-pic-width-lg;
         img{
             border-radius: 50%;
             width: 100%;
@@ -107,13 +107,13 @@ export default {
 
     .card__date{
         font-size: $font-size-caption;
-        opacity: .6;
+        opacity: .4;
     }
 
     @media screen and (max-width: 576px){
-        padding: 12px;
+        padding: $space-2;
         .card__pic{
-            flex-basis: 60px;
+            flex-basis: $card-pic-width-sm;
         }
     }
 }

@@ -2,7 +2,7 @@
 .list
     .list__content
         template(v-if="tweets.length")
-            TweetCard(v-for="(tweet, tid) in tweets" :key="tweet.id" v-bind="tweet" :tid="tid")
+            TweetCard(v-for="tweet in tweets" :key="tweet.id" v-bind="tweet")
         template(v-else)
             .list__content__msg
                 p {{ msg }}
@@ -15,19 +15,12 @@ import { mapActions } from "vuex";
 import { mapState } from "vuex";
 export default {
     name: 'TwitterResultList',
-    data(){
-        return {
-            scrollY: null
-        }
-    },
     computed: {
         ...mapState(['tweets','msg']),
     },
     methods: {
         ...mapActions(['fetchNextTweets']),
         handleScroll(){
-            let windowScrollY = window.scrollY
-            this.scrollY = windowScrollY
             let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
             let windowHeight = document.documentElement.clientHeight || document.body.clientHeight
             let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
@@ -49,18 +42,22 @@ export default {
 
 <style lang="scss">
 .list{
-    max-width: 720px;
+    max-width: $result-list-max-width;
     flex: 1;
-    padding: $result-list-inner-py $result-list-inner-px;
+    padding: $result-list-inner-p;
+    padding-bottom: $result-list-inner-pb;
     box-sizing: border-box;
+
     .list__content{
         margin-bottom: $result-list-inner-mb;
+
         .card{
             margin: 0 auto;
             margin-bottom: $card-outer-mb;
         }
         .list__content__msg{
             text-align: center;
+            font-size: $font-size-title;
         }
     }
     .list__btn{

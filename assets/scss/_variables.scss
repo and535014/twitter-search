@@ -3,33 +3,47 @@ $bg-color: #222;
 $bg-color-tint: lighten($bg-color, 10);
 $font-color: white;
 $border-color: rgba(white, .2);
-$p-sm: 16px;
-$p-lg: 24px;
 
 $primary: #188CD8;
+$primary-dark: darken($primary, 2);
 
 // font-size ----------------------------------
 $font-size-base: 14px;
 $font-size-title: 18px;
 $font-size-caption: 12px;
+$font-size-header: 30px;
 
 //layout -----------------------------------------
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 16px;
+$space-4: 24px;
+$space-5: 48px;
 
 // button
 $btn-px: $font-size-base;
+$btn-fs: $font-size-base;
 $btn-border-radius: 100px;
+$btn-line-height: 32px;
 
 // card 
-$card-inner-mb: 8px;
-$card-inner-gutter: 12px;
-$card-outer-mb: 12px;
-$card-inner-p: $p-sm;
+$card-inner-mb: $space-2;
+$card-inner-gutter: $space-3;
+$card-inner-p: $space-3;
+$card-outer-mb: $space-3;
+$card-pic-width-lg: 80px;
+$card-pic-width-sm: 60px;
 
 // result-list
-$result-list-inner-mb: 16px;
-$result-list-inner-px: $p-sm;
-$result-list-inner-py: $p-lg;
+$result-list-inner-mb: $space-3;
+$result-list-inner-p: $space-3;
+$result-list-inner-pb: $space-4;
+$result-list-max-width: 720px;
 
 //search-box
-$search-box-inner-p: $p-sm;
-$search-box-inner-mb: 8px;
+$search-box-inner-p: $space-3;
+$search-box-inner-mb: $space-2;
+$search-box-min-width: 150px;
+
+// header 
+$header-p: $space-4;
