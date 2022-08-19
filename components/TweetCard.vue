@@ -16,7 +16,7 @@ a.card(:href="tweetUrl" target="_blank")
 import { mapState } from 'vuex'
 export default {
     name: 'TweetCard',
-    props: ['id', 'text', 'created_at', 'author_id'],
+    props: ['id', 'text', 'created_at', 'author_id', 'tid'],
     computed: {
         ...mapState(['users']),
         localTime(){

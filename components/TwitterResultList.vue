@@ -2,7 +2,7 @@
 .list
     .list__content
         template(v-if="tweets.length")
-            TweetCard(v-for="tweet in tweets" :key="tweet.id" v-bind="tweet")
+            TweetCard(v-for="(tweet, tid) in tweets" :key="tid" v-bind="tweet" :tid="tid")
         template(v-else)
             .list__content__msg
                 p {{ msg }}
