@@ -50,7 +50,8 @@ export const mutations = {
         state.users = {...payload.includes}.users || []
         state.meta = payload.meta || []
         state.nextToken = {...payload.meta}.next_token || ''
-        state.resultCount = parseInt({...payload.meta}.result_count) || 0
+        state.resultCount = [...state.tweets].length || 0
+        // console.log(state.resultCount);
     },
     updateDatas(state, payload){
         state.data.push(payload)
@@ -59,6 +60,7 @@ export const mutations = {
         state.users.push(...payload.includes.users)
         state.nextToken = payload.meta.next_token || ''
         state.resultCount = state.tweets.length
+        // console.log(state.resultCount);
     },
     clearDatas(state){
         state.data = []
