@@ -6,8 +6,8 @@
         template(v-else)
             .list__content__msg
                 p {{ msg }}
-    //- .list__btn(v-if="tweets.length")
-    //-     button.btn.btn--primary(@click="fetchNextTweets") 更多
+    .list__btn(v-if="tweets.length")
+        button.btn.btn--primary(@click="fetchNextTweets") 更多
 </template>
 
 <script>
