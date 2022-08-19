@@ -5,6 +5,7 @@ const baseUrl = 'http://localhost:3000/api'
 export const state = () => ({
     msg: '請輸入關鍵字開始進行搜尋。',
     keywords: '',
+    isSearching: false,
     data: [],
     tweets: [],
     users: [],
@@ -25,7 +26,7 @@ export const state = () => ({
         'Content-Type': 'application/json',
         "Authorization": `Bearer ${token}`
     },
-    filters: ' -is:retweet'
+    filters: ' -is:retweet -is:reply'
 });
 
 export const getters = {
@@ -45,22 +46,34 @@ export const mutations = {
         state.keywords = payload
     },
     setDatas(state, payload){
-        state.data.push(payload)
-        state.tweets = payload.data || []
-        state.users = {...payload.includes}.users || []
-        state.meta = payload.meta || []
-        state.nextToken = {...payload.meta}.next_token || ''
-        state.resultCount = [...state.tweets].length || 0
-        // console.log(state.resultCount);
+        let input = {...payload}
+        if(input.data){
+            state.data.push(input)
+            state.tweets = input.data || []
+            state.users = {...input.includes}.users || []
+            state.meta = input.meta || []
+            state.nextToken = {...input.meta}.next_token || ''
+            state.resultCount = state.tweets.length
+            state.isSearching = true
+            // console.log(state.resultCount);
+        }else{
+            state.msg = '沒有符合搜尋的結果。'
+            return false
+        }
     },
     updateDatas(state, payload){
-        state.data.push(payload)
-        state.tokenData = payload
-        state.tweets.push(...payload.data)
-        state.users.push(...payload.includes.users)
-        state.nextToken = payload.meta.next_token || ''
-        state.resultCount = state.tweets.length
-        // console.log(state.resultCount);
+        let input = {...payload}
+        if(input.data){
+            state.data.push(input)
+            state.tokenData = input
+            state.tweets.push(...input.data)
+            state.users.push(...input.includes.users)
+            state.nextToken = {...input.meta}.next_token || ''
+            state.resultCount = state.tweets.length
+            // console.log(state.resultCount);
+        }else{
+            return false
+        }
     },
     clearDatas(state){
         state.data = []
@@ -68,7 +81,12 @@ export const mutations = {
         state.users = []
         state.meta = []
         state.resultCount = null
-    }     
+    },
+    noMoreData(state){
+        state.isSearching = false
+        state.msg = '沒有更多符合搜尋的結果。'
+        // console.log('no more data', state.isSearching);
+    }
 };
 
 export const actions = {
@@ -96,7 +114,10 @@ export const actions = {
             headers: context.state.headers
         })
         .then((res)=> res)
-        .catch((error) => console.error(error))
+        .catch((error) => {
+            console.error(error)
+            context.commit('noMoreData')
+        })
 
         context.commit('updateDatas', json)
     }

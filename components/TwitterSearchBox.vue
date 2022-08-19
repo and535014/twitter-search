@@ -33,13 +33,7 @@ export default {
                 this.$store.commit('clearDatas')
                 this.$store.commit('setKeywords', this.keywords)
                 this.$store.commit('setMsg', '搜尋中...')
-                this.fetchTweets().then(() => {
-                    if(this.resultCount==0){
-                        this.$store.commit('setMsg', '沒有符合搜尋的結果。')
-                        // console.log('0 result');
-                        // console.log(this.resultCount);
-                    }
-                })
+                this.fetchTweets()
             }
         }
     }

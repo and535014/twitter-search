@@ -7,7 +7,9 @@
             .list__content__msg
                 p {{ msg }}
     .list__btn(v-if="tweets.length")
-        button.btn.btn--primary(@click="fetchNextTweets") 更多
+        button.btn.btn--primary(@click="fetchNextTweets" v-if="isSearching") 更多
+        .list__content__msg(v-else)
+            p {{ msg }}
 </template>
 
 <script>
@@ -16,7 +18,7 @@ import { mapState } from "vuex";
 export default {
     name: 'TwitterResultList',
     computed: {
-        ...mapState(['tweets','msg']),
+        ...mapState(['tweets','msg', 'isSearching']),
     },
     methods: {
         ...mapActions(['fetchNextTweets']),
@@ -55,11 +57,13 @@ export default {
             margin: 0 auto;
             margin-bottom: $card-outer-mb;
         }
-        .list__content__msg{
-            text-align: center;
-            font-size: $font-size-title;
-        }
     }
+
+    .list__content__msg{
+        text-align: center;
+        font-size: $font-size-title;
+    }
+    
     .list__btn{
         .btn{
             width: 100%;
