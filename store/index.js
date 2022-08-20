@@ -1,5 +1,5 @@
 const token = process.env.BEARER_TOKEN;
-const baseUrl = 'http://localhost:3000/api'
+const baseUrl = '/2/tweets/search/recent'
 // const endpointUrl = "https://api.twitter.com/2/tweets/search/recent";
 
 export const state = () => ({

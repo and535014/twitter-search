@@ -1,3 +1,12 @@
+const routerBase = 
+  process.env.DEPLOY_ENV === 'GH_PAGES'
+  ? {
+      router: {
+        base: '/twitter-search/'
+      }
+    }
+  : {}
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -53,9 +62,21 @@ export default {
     credentials: true,
   },
 
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.BROWSER_BASE_URL
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.BASE_URL
+    }
+  },
+
   proxy: {
     '/api': {
-      target: 'https://api.twitter.com/2/tweets/search/recent', 
+      target: 'https://api.twitter.com', 
       changeOrigin: true, 
       pathRewrite: {
         '^/api': '',
@@ -65,5 +86,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  ...routerBase
 }
