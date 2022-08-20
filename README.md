@@ -1,4 +1,7 @@
 # Twitter-search
+一個可以在過去七天的推文中 (不包含轉推) 搜尋並取得符合關鍵字推文的小工具。
+* 串接 Twitter API v2 (GET /2/tweets/search/recent)
+* 使用 Vue.js + Nuxt.js
 
 ## Build Setup
 
